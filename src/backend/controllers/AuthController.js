@@ -1,7 +1,8 @@
 import { v4 as uuid } from "uuid";
 import { Response } from "miragejs";
 import { formatDate } from "../utils/authUtils";
-const sign = require("jwt-encode");
+import jwtEncode from 'jwt-encode';
+const sign = jwtEncode
 
 /**
  * All the routes related to Auth are present here.
