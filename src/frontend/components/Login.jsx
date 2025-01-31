@@ -18,24 +18,50 @@ export const Login = () => {
       authDispatch({type : "LOGIN", payload: {user : foundUser, token : encodedToken}}); 
       localStorage.setItem("token", encodedToken)
       localStorage.setItem("user", JSON.stringify(foundUser))
-      navigate("/");
+      navigate("/home");
     }catch(err){
       console.log(err)
     }
   }
   return (
     <>
-    <form onSubmit = {handleLogin} className=' flex flex-col items-center p-6 rounded-lg shadow-md text-black'>
-    <label htmlFor='username' className= "block text-sm font-medium">UserName
-      <input  className='m-9 p-2 bg-gray-100 rounded-b-lg opacity-500' type='text' value={userName} onChange={(e)=>setUserName(e.target.value)}/>
-    </label>
-    <label>Password
-      <input className = "m-9 p-2 bg-gray-100 rounded-b-lg"type='password' value={password} onChange={(e)=>setPassword(e.target.value)}/>
-    </label>
-    <button className='bg-gray-200 rounded-b-lg m-2.5 px-4 py-2 text-xl align-middle cursor-pointer' 
-            type='submit'
-    >Login</button>
-    </form>
+    <div  className="relative h-screen bg-cover bg-center bg-no-repeat">
+    <div 
+      className="absolute inset-0 bg-cover bg-center bg-no-repeat z-0"
+      style={{ backgroundImage: "url('https://assets.nflxext.com/ffe/siteui/vlv3/fb5cb900-0cb6-4728-beb5-579b9af98fdd/web/IN-en-20250127-TRIFECTA-perspective_cf66f5a3-d894-4185-9106-5f45502fc387_large.jpg')", filter: "blur(1px)" }}
+    />
+
+    <div className="relative z-10 flex flex-col items-center justify-center h-full text-white">
+
+      <div className=" py-36 px-8 rounded-md w-full max-w-md mx-auto box-border " style={{backgroundColor : "rgba(0, 0, 0, 0.7)"}}>
+      <header className="text-3xl font-bold mb-8">
+        <h1>Netflix Clone</h1>
+      </header>
+        <form onSubmit = {handleLogin} className="flex flex-col items-center">
+          <label htmlFor="username" className="block text-sm font-medium mb-2"></label>
+          <input 
+            type="text" 
+            id="username" 
+            className="w-full py-4 p-1.5 border-1 border-gray-400 rounded-md mb-4 text-white placeholder-gray-300" 
+            placeholder="User Name" value={userName} onChange={(e)=>setUserName(e.target.value)}
+          />
+          <label htmlFor="password" className="block text-sm font-medium mb-4"> </label>
+          <input 
+            type="password" 
+            id="password" 
+            className="w-full py-4 border-1 m-1 p-1.5 rounded-md mb-6 text-white placeholder-gray-300" 
+            placeholder="Password" autoComplete="current-password"  value={password} onChange={(e)=>setPassword(e.target.value)}
+          />
+          <button 
+            type="submit" 
+            className="bg-red-600 text-white px-11 py-3 rounded-lg font-semibold cursor-pointer">
+            Sign Up
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
     </>
   )
 }
+

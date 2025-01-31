@@ -10,10 +10,11 @@ function App() {
   return (
     <>
       <div className='bg-red-100 mb-0.5'>
+        
         <Routes>
-          <Route index element = {  <Home/>}/>
+          <Route index element = {  <LoginPage/>}/>
           <Route path = "/login" element = {<LoginPage/>}/>
-          <Route path = "/" element = {<PrivateRoute><Home/></PrivateRoute>}/>ß
+          <Route path = "/home" element = {<PrivateRoute><Home/></PrivateRoute>}/>ß
         </Routes>
       
        </div>
