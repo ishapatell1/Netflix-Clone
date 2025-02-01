@@ -14,10 +14,10 @@ function App() {
       <div className='bg-red-100 mb-0.5'>
       <ToastContainer/>
         <Routes>
-          <Route index element = {  <LoginPage/>}/>
+          <Route index  path = "/home" element = {  <Home/>}/>
           <Route path = "/login" element = {<LoginPage/>}/>
           <Route path = "/signup" element = {<SignupPage/>}/>
-          <Route path = "/home" element = {<PrivateRoute><Home/></PrivateRoute>}/>
+          {/* <Route path = "" element = {<PrivateRoute><Home/></PrivateRoute>}/> */}
          
         </Routes>
       

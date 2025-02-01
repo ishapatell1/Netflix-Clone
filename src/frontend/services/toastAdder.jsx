@@ -6,7 +6,7 @@ export const toastAdder = (type, content, position= "top-center") => {
   return (
    toast[type](content, {
     position : position,
-    autoClose: 1500, 
+    autoClose: 1000, 
     pauseOnHover : true
    })
   )
