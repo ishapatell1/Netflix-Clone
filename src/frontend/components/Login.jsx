@@ -52,10 +52,12 @@ export const Login = () => {
             className="w-full py-4 border-1 m-1 p-1.5 rounded-md mb-6 text-white placeholder-gray-300" 
             placeholder="Password" autoComplete="current-password"  value={password} onChange={(e)=>setPassword(e.target.value)}
           />
+          {/* <Link to = ""> Forget Password? Eat Almonds!</Link> */}
+          <button onClick={()=>navigate("/signup")}>No Account? Sign up Here!</button>
           <button 
             type="submit" 
             className="bg-red-600 text-white px-11 py-3 rounded-lg font-semibold cursor-pointer">
-            Sign Up
+            Sign In
           </button>
         </form>
       </div>

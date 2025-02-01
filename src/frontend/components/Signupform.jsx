@@ -1,9 +1,36 @@
 import React, { useState } from 'react'
-
+import axios from 'axios'
+import { toastAdder } from '../services/toastAdder'
+import { SignupUser } from '../services/authService'
+import { useNavigate } from 'react-router-dom'
+import { useAuth } from '../context/AuthContext'
 export const Signupform = () => {
-    const [input, setInput] = useState("")
-    const handleSubmit = ()=>{
+    const [input, setInput] = useState("") 
+    const [email, setEmail] = useState("")
+    const [password,setPassword] = useState("")
+    const [confirmPassword, setConfirmPassword] = useState("")
+    const navigate = useNavigate()
+    const {authDispatch} = useAuth()
+    const handleSubmit =async (e)=>{
+        e.preventDefault()
+        if(confirmPassword === password){
+            try{
+                const response = await SignupUser(input,password, email)
+                console.log(response, "Here")
+                if(response){
+                authDispatch({type: "SIGNUP", payload : {user : response.createdUser, token : response.encodedToken}})
+                localStorage.setItem("token", response.encodedToken);
+                localStorage.setItem("user", JSON.stringify(response.createdUser));
+                navigate("/home")
+                }
+              
+            }catch(err){
+                console.log(err)
+            }
 
+        }else{
+            toastAdder("error", "Passwords do not match")
+        }
     }
   return (
    <>
@@ -18,10 +45,10 @@ export const Signupform = () => {
                 <input
                     type="text"
                     name="fullName"
-                    // value={formData.fullName}
-                    // onChange={handleChange}
                     className="w-full border rounded-md p-2 mb-3"
                     placeholder="Enter your full name"
+                    value={input}
+                    onChange={(e)=>setInput(e.target.value)}
                     required
                 />
 
@@ -29,10 +56,10 @@ export const Signupform = () => {
                 <input
                     type="email"
                     name="email"
-                    // value={formData.email}
-                    // onChange={handleChange}
                     className="w-full border rounded-md p-2 mb-3"
                     placeholder="Enter your email"
+                    value={email}
+                    onChange={(e)=> setEmail(e.target.value)}
                     required
                 />
 
@@ -40,10 +67,10 @@ export const Signupform = () => {
                 <input
                     type="password"
                     name="password"
-                    // value={formData.password}
-                    // onChange={handleChange}
                     className="w-full border rounded-md p-2 mb-3"
                     placeholder="Enter password"
+                    value={password}
+                    onChange={(e)=>setPassword(e.target.value)}
                     required
                 />
 
@@ -51,10 +78,10 @@ export const Signupform = () => {
                 <input
                     type="password"
                     name="confirmPassword"
-                    // value={formData.confirmPassword}
-                    // onChange={handleChange}
                     className="w-full border rounded-md p-2 mb-4"
                     placeholder="Confirm password"
+                    value={confirmPassword}
+                    onChange={(e)=>setConfirmPassword(e.target.value)}
                     required
                 />
 

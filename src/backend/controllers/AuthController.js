@@ -43,6 +43,7 @@ export const signupHandler = function (schema, request) {
       bookmarks: [],
     };
     const createdUser = schema.users.create(newUser);
+    
     const encodedToken = sign(
       { _id, username },
       import.meta.env.VITE_JWT_SECRET
