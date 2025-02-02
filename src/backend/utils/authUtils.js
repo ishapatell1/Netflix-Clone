@@ -6,7 +6,7 @@ export const requiresAuth = function (request) {
   const encodedToken = request.requestHeaders.authorization;
   const decodedToken = jwtDecode(
     encodedToken,
-    pimport.meta.env.VITE_JWT_SECRET
+    import.meta.env.VITE_JWT_SECRET
   );
   if (decodedToken) {
     const user = this.db.users.findBy({ username: decodedToken.username });

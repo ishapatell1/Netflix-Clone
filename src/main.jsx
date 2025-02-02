@@ -5,12 +5,15 @@ import { makeServer } from './server.js'// Call make ServermakeServer()
 import './index.css'
 import App from './App.jsx'
 import { AuthProvider } from './frontend/context/AuthContext.jsx'
+import { PostProvider } from './frontend/context/postContext.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
       <AuthProvider>
-        <App />
+        <PostProvider>
+          <App />
+        </PostProvider>
      </AuthProvider>
     </BrowserRouter>
   </StrictMode>,

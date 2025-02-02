@@ -7,6 +7,7 @@ import { Home } from './frontend/pages/Home'
 import { SignupPage } from './frontend/pages/SignupPage'
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { CreatePost } from './frontend/components/CreatePost'
 function App() {
 
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route index  path = "/home" element = {  <Home/>}/>
           <Route path = "/login" element = {<LoginPage/>}/>
           <Route path = "/signup" element = {<SignupPage/>}/>
+          <Route path = "/posts" element = {<CreatePost/>}/>
           {/* <Route path = "" element = {<PrivateRoute><Home/></PrivateRoute>}/> */}
          
         </Routes>
